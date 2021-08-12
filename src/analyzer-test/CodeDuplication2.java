@@ -1,4 +1,4 @@
-public class CodeDuplication {
+public class CodeDuplication2 {
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
     private static final int BUTTON_WIDTH = 80;
@@ -40,4 +40,24 @@ public class CodeDuplication {
                 return y;
         }
     }
+
+    private Consumer<ItemEvent> calcTypeSwitchEventConsumer = event -> {
+        if (event.getStateChange() != ItemEvent.SELECTED) return;
+
+        String selectedItem = (String) event.getItem();
+        switch (selectedItem) {
+            case "Standard":
+                window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+                btnRoot.setVisible(false);
+                btnPower.setVisible(false);
+                btnLog.setVisible(false);
+                break;
+            case "Scientific":
+                window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
+                btnRoot.setVisible(true);
+                btnPower.setVisible(true);
+                btnLog.setVisible(true);
+                break;
+        }
+    };
 }
